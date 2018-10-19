@@ -14,26 +14,26 @@ namespace ClassLogic
             PlayerType = "UberCheater";
             AllNumbers = new int[20];
         }
-        public override void Play(int WinDigit, ref int[] AllAnswers)
+        public override void Play(int WinDigit, ref int[] AllAnswers, int OneByOne)
         {
             bool IsRight = false;
             bool IsSwitcher = false;
             int NearWinDigit = 10000;
             for (int i = 0; i < AllNumbers.Length; i++)
             {
-                AllNumbers[i] = 40+i;
-                AllAnswers[79 + i] = AllNumbers[i];
+                AllNumbers[i] = (12 * OneByOne)  + i;
+                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
                 IsSwitcher = false;
                 do
                 {
                     for (int j = 0; j < AllAnswers.Length; j++)
                     {
-                        if (j != (i + 79))
+                        if (j != (i + (12 * OneByOne) ))
                         {
                             if (AllNumbers[i] == AllAnswers[j])
                             {
                                 AllNumbers[i]++;
-                                AllAnswers[79 + i] = AllNumbers[i];
+                                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
                                 IsSwitcher = false;
                                 break;
                             }

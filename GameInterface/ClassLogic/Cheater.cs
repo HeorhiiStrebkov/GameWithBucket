@@ -13,7 +13,7 @@ namespace ClassLogic
             PlayerType = "Cheater";
             AllNumbers = new int[20];
         }
-        public override void Play(int WinDigit, ref int[] AllAnswers)
+        public override void Play(int WinDigit, ref int[] AllAnswers, int OneByOne)
         {
             bool IsRight = false;
             bool IsSwitcher = false;
@@ -22,19 +22,19 @@ namespace ClassLogic
             {
                 Random rand = new Random((int)DateTime.Now.Ticks+90 + i);
                 AllNumbers[i] = rand.Next(40, 140);
-                AllAnswers[59 + i] = AllNumbers[i];
+                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
                 IsSwitcher = false;
                 do
                 {
                     for (int j = 0; j < AllAnswers.Length; j++)
                     {
-                        if (j != (i+59))
+                        if (j != (i+ (12 * OneByOne) ))
                         {
                             Random rnd = new Random((int)DateTime.Now.Ticks+156 + i + j);
                             if (AllNumbers[i] == AllAnswers[j])
                             {
                                 AllNumbers[i] = rnd.Next(40, 140);
-                                AllAnswers[59 + i] = AllNumbers[i];
+                                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
                                 IsSwitcher = false;
                                 break;
                             }

@@ -8,7 +8,7 @@ namespace ClassLogic
 {
     public class NodeGamer : BasikGamer
     {
-        public override void Play(int WinDigit, ref int[] AllAnswers) 
+        public override void Play(int WinDigit, ref int[] AllAnswers, int OneByOne) 
         {
             bool IsRight = false;
             bool IsSwitcher = false;
@@ -17,7 +17,7 @@ namespace ClassLogic
             {
                 Random rand = new Random((int)DateTime.Now.Ticks+170 + i);
                 AllNumbers[i] = rand.Next(40, 140);
-                AllAnswers[39 + i] = AllNumbers[i];
+                AllAnswers[(12 * OneByOne) + i] = AllNumbers[i];
                 IsSwitcher = false;
                 do
                 {
@@ -29,7 +29,7 @@ namespace ClassLogic
                             if (AllNumbers[i] == AllNumbers[j])
                             {
                                 AllNumbers[i] = rnd.Next(40, 140);
-                                AllAnswers[39 + i] = AllNumbers[i];
+                                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
                                 IsSwitcher = false;
                                 break;
                             }

@@ -13,14 +13,14 @@ namespace ClassLogic
             PlayerType = "UberGamer";
             AllNumbers = new int[20];
         }
-        public override void Play(int WinDigit, ref int []AllAnswers)
+        public override void Play(int WinDigit, ref int []AllAnswers, int OneByOne)
         {
             bool IsRight = false;
             int NearWinDigit = 10000;
             for (int i = 0; i < AllNumbers.Length; i++)
             {
-                AllNumbers[i] = i+40;
-                AllAnswers[19+i] = AllNumbers[i];
+                AllNumbers[i] = i+(12*OneByOne);
+                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
                 if (AllNumbers[i] == WinDigit)
                 {
                     IsRight = true;

@@ -11,7 +11,7 @@ namespace ClassLogic
         public string PlayerType { get; set; }
         public string PlayerName { get; set; }
         public int[] AllNumbers { get; set; }
-        public virtual void Play(int WinDigit, ref int[] AllAnswers)
+        public virtual void Play(int WinDigit, ref int[] AllAnswers, int OneByOne)
         {
             bool IsRight = false;
             int NearWinDigit = 10000;
@@ -19,7 +19,7 @@ namespace ClassLogic
             {
                 Random rand = new Random((int)DateTime.Now.Ticks+126 + i);
                 AllNumbers[i] = rand.Next(40, 140);
-                AllAnswers[i] = AllNumbers[i];
+                AllAnswers[i + (12 * OneByOne) ] = AllNumbers[i];
                 if (AllNumbers[i] == WinDigit)
                 {
                     IsRight = true;
