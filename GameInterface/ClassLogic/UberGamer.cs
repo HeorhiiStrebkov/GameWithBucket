@@ -19,7 +19,7 @@ namespace ClassLogic
             int NearWinDigit = 10000;
             for (int i = 0; i < AllNumbers.Length; i++)
             {
-                AllNumbers[i] = i+(12*OneByOne);
+                AllNumbers[i] = i+40;
                 AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
                 if (AllNumbers[i] == WinDigit)
                 {
