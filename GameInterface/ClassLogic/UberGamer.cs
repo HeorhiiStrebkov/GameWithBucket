@@ -6,42 +6,42 @@ using System.Threading.Tasks;
 
 namespace ClassLogic
 {
-    public class UberGamer : BasikGamer
+    public class UberGamer : Player
     {
-        public override void Play(int WinDigit, ref int []AllAnswers, int OneByOne, int AllGamers)
+        public override void Play(int winDigit, ref int []allAnswers, int oneByOne, int allgamers)
         {
             bool IsRight = false;
-            int NearWinDigit = 10000;
+            int nearWinDigit = 10000;
             for (int i = 0; i < AllNumbers.Length; i++)
             {
                 AllNumbers[i] = i+40;
-                AllAnswers[((100 / AllGamers) * OneByOne)  + i] = AllNumbers[i];
-                if (AllNumbers[i] == WinDigit)
+                allAnswers[((100 / allgamers) * oneByOne)  + i] = AllNumbers[i];
+                if (AllNumbers[i] == winDigit)
                 {
                     IsRight = true;
                 }
                 else
                 {
-                    if (Math.Abs(WinDigit - NearWinDigit) > Math.Abs(WinDigit - AllNumbers[i]))
+                    if (Math.Abs(winDigit - nearWinDigit) > Math.Abs(winDigit - AllNumbers[i]))
                     {
-                        NearWinDigit = AllNumbers[i];
+                        nearWinDigit = AllNumbers[i];
                     }
                 }
             }
             if (IsRight == true)
             {
-                Console.WriteLine ($"{PlayerType} win it with {WinDigit} digit!");
+                Console.WriteLine ($"{PlayerType} win it with {winDigit} digit!");
             }
             else
             {
                
-                Console.WriteLine ($"{PlayerType} win it with  digit that was the nearest - {NearWinDigit} digit!");
+                Console.WriteLine ($"{PlayerType} win it with  digit that was the nearest - {nearWinDigit} digit!");
             }
         }
-        public UberGamer(int AllGamers)
+        public UberGamer(int allgamers)
         {
             PlayerType = "UberGamer";
-            AllNumbers = new int[(100 / AllGamers)];
+            AllNumbers = new int[(100 / allgamers)];
         }
     }
 }

@@ -43,6 +43,7 @@
     <Compile Include="BasikGamer.cs" />
     <Compile Include="Cheater.cs" />
     <Compile Include="NodeGamer.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UberCheater.cs" />
     <Compile Include="UberGamer.cs" />

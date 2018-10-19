@@ -6,29 +6,29 @@ using System.Threading.Tasks;
 
 namespace ClassLogic
 {
-    public class UberCheater : BasikGamer
+    public class UberCheater : Player
 
     {
-        public override void Play(int WinDigit, ref int[] AllAnswers, int OneByOne, int AllGamers)
+        public override void Play(int winDigit, ref int[] allAnswers, int oneByOne, int allgamers)
         {
             bool IsRight = false;
             bool IsSwitcher = false;
-            int NearWinDigit = 10000;
+            int nearWinDigit = 10000;
             for (int i = 0; i < AllNumbers.Length; i++)
             {
-                AllNumbers[i] = ((100 / AllGamers) * OneByOne)  + i;
-                AllAnswers[((100 / AllGamers) * OneByOne)  + i] = AllNumbers[i];
+                AllNumbers[i] = ((100 / allgamers) * oneByOne)  + i;
+                allAnswers[((100 / allgamers) * oneByOne)  + i] = AllNumbers[i];
                 IsSwitcher = false;
                 do
                 {
-                    for (int j = 0; j < AllAnswers.Length; j++)
+                    for (int j = 0; j < allAnswers.Length; j++)
                     {
-                        if (j != (i + ((100 / AllGamers) * OneByOne) ))
+                        if (j != (i + ((100 / allgamers) * oneByOne) ))
                         {
-                            if (AllNumbers[i] == AllAnswers[j])
+                            if (AllNumbers[i] == allAnswers[j])
                             {
                                 AllNumbers[i]++;
-                                AllAnswers[((100 / AllGamers) * OneByOne)  + i] = AllNumbers[i];
+                                allAnswers[((100 / allgamers) * oneByOne)  + i] = AllNumbers[i];
                                 IsSwitcher = false;
                                 break;
                             }
@@ -40,31 +40,31 @@ namespace ClassLogic
                     }
                 }
                 while (IsSwitcher == false);
-                if (AllNumbers[i] == WinDigit)
+                if (AllNumbers[i] == winDigit)
                 {
                     IsRight = true;
                 }
                 else
                 {
-                    if (Math.Abs(WinDigit - NearWinDigit) > Math.Abs(WinDigit - AllNumbers[i]))
+                    if (Math.Abs(winDigit - nearWinDigit) > Math.Abs(winDigit - AllNumbers[i]))
                     {
-                        NearWinDigit = AllNumbers[i];
+                        nearWinDigit = AllNumbers[i];
                     }
                 }
             }
             if (IsRight == true)
             {
-                Console.WriteLine($"{PlayerType} win it with {WinDigit} digit!");
+                Console.WriteLine($"{PlayerType} win it with {winDigit} digit!");
             }
             else
             {
-                Console.WriteLine($"{PlayerType} win it with  digit that was the nearest - {NearWinDigit} digit!");
+                Console.WriteLine($"{PlayerType} win it with  digit that was the nearest - {nearWinDigit} digit!");
             }
         }
-        public UberCheater(int AllGamers)
+        public UberCheater(int allgamers)
         {
             PlayerType = "UberCheater";
-            AllNumbers = new int[(100 / AllGamers)];
+            AllNumbers = new int[(100 / allgamers)];
         }
     }
 }

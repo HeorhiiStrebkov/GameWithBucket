@@ -13,12 +13,12 @@ namespace GameInterface
         {
             int switcher = 0;
             bool IsSwitcher = false;
-            int[] AllAnswers = new int[100];
-            int HowMuchGamers = 0;
-            int ToChooseTypes = 0;
-            BasikGamer[] Gamers = new BasikGamer[8];
+            int[] allAnswers = new int[100];
+            int howMuchGamers = 0;
+            int toChooseTypes = 0;
+            Player[] gamers = new Player[8];
             Random rand = new Random((int)DateTime.Now.Ticks);
-            int WinDigit = rand.Next(40, 140);
+            int winDigit = rand.Next(40, 140);
             Console.WriteLine("Hi, member!Let's see our game!");
             do
             {
@@ -28,160 +28,126 @@ namespace GameInterface
                 Console.WriteLine("1.Start your Programm");
                 Console.WriteLine("2.See all digits and arrays (for admin)");
                 Console.WriteLine("3.Choose options for game");
-                Console.WriteLine("4.Exit");
+                Console.WriteLine("4.Clear All Data");
+                Console.WriteLine("5.Exit");
                 switcher = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine();
                 switch (switcher)
                 {
                     case 1:
-                        Console.WriteLine($"Our WinDigit is {WinDigit}.");
-                        if (Gamers[0] == null)
+                        Console.WriteLine($"Our winDigit is {winDigit}.");
+                        if (gamers[0] == null)
                         {
                             Console.WriteLine("U can't start, choose options firstly!");
                         }
                         else
                         {
-                            for (int i = 0; i < Gamers.Length; i++)
+                            for (int i = 0; i < gamers.Length; i++)
                             {
-                                if (Gamers[i] != null)
+                                if (gamers[i] != null)
                                 {
-                                    Gamers[i].Play(WinDigit, ref AllAnswers, i, HowMuchGamers);
+                                    gamers[i].Play(winDigit, ref allAnswers, i, howMuchGamers);
                                 }
                             }
                         }
                         break;
                     case 2:
-                        Console.WriteLine($"Our WinDigit is {WinDigit}.");
+                        Console.WriteLine($"Our winDigit is {winDigit}.");
                         Console.WriteLine("Full array of tries :");
-                        for (int i = 0; i < AllAnswers.Length; i++)
+                        for (int i = 0; i < allAnswers.Length; i++)
                         {
-                            Console.Write(AllAnswers[i] + " ");
+                            Console.Write(allAnswers[i] + " ");
                         }
                         break;
+
                     case 3:
-                        Console.WriteLine("Enter number of members between 2 and 8");
                         do
                         {
-                            HowMuchGamers = Convert.ToInt32(Console.ReadLine());
-                            if (HowMuchGamers <= 1 && HowMuchGamers >= 9)
+                            Console.WriteLine("Enter number of members between 2 and 8");
+                            howMuchGamers = Convert.ToInt32(Console.ReadLine());
+                            if (howMuchGamers >= 9 || howMuchGamers <= 1)
                             {
-                                Console.WriteLine("One more! U need to enter number of members between 2 and 8");
+                                Console.WriteLine("Try again!");
                             }
-                        }
-                        while (HowMuchGamers > 1 && HowMuchGamers < 9);
+                        } while (howMuchGamers >= 9 || howMuchGamers <= 1);
                         do
                         {
                             Console.WriteLine();
                             Console.WriteLine();
                             Console.WriteLine("Enter number to choose or other to end option!");
-                            Console.WriteLine("1.Create BsikPlayer");
+                            Console.WriteLine("1.Create BasikPlayer");
                             Console.WriteLine("2.Create Cheater");
                             Console.WriteLine("3.Create NodeGamer");
                             Console.WriteLine("4.Create UberGamer");
                             Console.WriteLine("5.Create UberCheater");
-                            Console.WriteLine("6.Exit to main menu");
                             switcher = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine();
                             switch (switcher)
                             {
                                 case 1:
-                                    if (Gamers[7] == null)
+                                    for (int i = 0; i < gamers.Length; i++)
                                     {
-                                        for (int i = 0; i < Gamers.Length; i++)
+                                        if (gamers[i] == null)
                                         {
-                                            if (Gamers[i] == null)
-                                            {
-                                                var BasikPlayer = new BasikGamer(HowMuchGamers);
-                                                Gamers[i] = BasikPlayer;
-                                                Console.WriteLine("BasikGamer was Created");
-                                                ToChooseTypes++;
-                                                break;
-                                            }
+                                            var basikPlayer = new BasikGamer(howMuchGamers);
+                                            gamers[i] = basikPlayer;
+                                            Console.WriteLine("BasikGamer was Created");
+                                            toChooseTypes++;
+                                            break;
                                         }
                                     }
-                                    else
-                                    {
-                                        Console.WriteLine("U had 8 players and can;t add more!");
-                                    }
+
                                     break;
                                 case 2:
-                                    if (Gamers[7] == null)
+                                    for (int i = 0; i < gamers.Length; i++)
                                     {
-                                        for (int i = 0; i < Gamers.Length; i++)
+                                        if (gamers[i] == null)
                                         {
-                                            if (Gamers[i] == null)
-                                            {
-                                                var CheaterPlayer = new Cheater(HowMuchGamers);
-                                                Gamers[i] = CheaterPlayer;
-                                                Console.WriteLine("Cheater was Created");
-                                                ToChooseTypes++;
-                                                break;
-                                            }
+                                            var cheaterPlayer = new Cheater(howMuchGamers);
+                                            gamers[i] = cheaterPlayer;
+                                            Console.WriteLine("Cheater was Created");
+                                            toChooseTypes++;
+                                            break;
                                         }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("U had 8 players and can;t add more!");
                                     }
                                     break;
                                 case 3:
-                                    if (Gamers[7] == null)
+                                    for (int i = 0; i < gamers.Length; i++)
                                     {
-                                        for (int i = 0; i < Gamers.Length; i++)
+                                        if (gamers[i] == null)
                                         {
-                                            if (Gamers[i] == null)
-                                            {
-                                                var NodePlayer = new NodeGamer(HowMuchGamers);
-                                                Gamers[i] = NodePlayer;
-                                                Console.WriteLine("NodePlayer was Created");
-                                                ToChooseTypes++;
-                                                break;
-                                            }
+                                            var nodePlayer = new NodeGamer(howMuchGamers);
+                                            gamers[i] = nodePlayer;
+                                            Console.WriteLine("nodePlayer was Created");
+                                            toChooseTypes++;
+                                            break;
                                         }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("U had 8 players and can;t add more!");
                                     }
                                     break;
                                 case 4:
-                                    if (Gamers[7] == null)
+                                    for (int i = 0; i < gamers.Length; i++)
                                     {
-                                        for (int i = 0; i < Gamers.Length; i++)
+                                        if (gamers[i] == null)
                                         {
-                                            if (Gamers[i] == null)
-                                            {
-                                                var UberPlayer = new UberGamer(HowMuchGamers);
-                                                Gamers[i] = UberPlayer;
-                                                Console.WriteLine("UberGamer was Created");
-                                                ToChooseTypes++;
-                                                break;
-                                            }
+                                            var uberPlayer = new UberGamer(howMuchGamers);
+                                            gamers[i] = uberPlayer;
+                                            Console.WriteLine("UberGamer was Created");
+                                            toChooseTypes++;
+                                            break;
                                         }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("U had 8 players and can;t add more!");
                                     }
                                     break;
                                 case 5:
-                                    if (Gamers[7] == null)
+                                    for (int i = 0; i < gamers.Length; i++)
                                     {
-                                        for (int i = 0; i < Gamers.Length; i++)
+                                        if (gamers[i] == null)
                                         {
-                                            if (Gamers[i] == null)
-                                            {
-                                                var UberCheaterPlayer = new UberCheater(HowMuchGamers );
-                                                Gamers[i] = UberCheaterPlayer;
-                                                Console.WriteLine("UberCheater was Created");
-                                                ToChooseTypes++;
-                                                break;
-                                            }
+                                            var uberCheaterPlayer = new UberCheater(howMuchGamers);
+                                            gamers[i] = uberCheaterPlayer;
+                                            Console.WriteLine("UberCheater was Created");
+                                            toChooseTypes++;
+                                            break;
                                         }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("U had 8 players and can;t add more!");
                                     }
                                     break;
                                 default:
@@ -189,10 +155,21 @@ namespace GameInterface
                                     break;
                             }
                         }
-                        while (ToChooseTypes != HowMuchGamers);
+                        while (toChooseTypes != howMuchGamers);
                         IsSwitcher = false;
                         break;
                     case 4:
+                        for (int i = 0; i < gamers.Length; i++)
+                        {
+                            gamers[i] = null;
+                        }
+                        for (int i = 0; i < allAnswers.Length; i++)
+                        {
+                            allAnswers[i] = 0;
+                        }
+                        Console.WriteLine("All data was cleared!");
+                        break;
+                    case 5:
                         IsSwitcher = true;
                         break;
                     default:

@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace ClassLogic
 {
-    public class Cheater : BasikGamer
+    public class Cheater : Player
     {
-        public override void Play(int WinDigit, ref int[] AllAnswers, int OneByOne, int AllGamers)
+        public override void Play(int winDigit, ref int[] allAnswers, int oneByOne, int allgamers)
         {
             bool IsRight = false;
             bool IsSwitcher = false;
-            int NearWinDigit = 10000;
+            int nearWinDigit = 10000;
             for (int i = 0; i < AllNumbers.Length; i++)
             {
-                Random rand = new Random((int)DateTime.Now.Ticks+90 + i);
+                Random rand = new Random((int)DateTime.Now.Ticks + 90 + i);
                 AllNumbers[i] = rand.Next(40, 140);
-                AllAnswers[((100 / AllGamers) * OneByOne)  + i] = AllNumbers[i];
+                allAnswers[((100 / allgamers) * oneByOne) + i] = AllNumbers[i];
                 IsSwitcher = false;
                 do
                 {
-                    for (int j = 0; j < AllAnswers.Length; j++)
+                    for (int j = 0; j < allAnswers.Length; j++)
                     {
-                        if (j != (i+ ((100 / AllGamers) * OneByOne) ))
+                        if (j != (i + ((100 / allgamers) * oneByOne)))
                         {
-                            Random rnd = new Random((int)DateTime.Now.Ticks+156 + i + j);
-                            if (AllNumbers[i] == AllAnswers[j])
+                            Random rnd = new Random((int)DateTime.Now.Ticks + 156 + i + j);
+                            if (AllNumbers[i] == allAnswers[j])
                             {
                                 AllNumbers[i] = rnd.Next(40, 140);
-                                AllAnswers[((100 / AllGamers) * OneByOne)  + i] = AllNumbers[i];
+                                allAnswers[((100 / allgamers) * oneByOne) + i] = AllNumbers[i];
                                 IsSwitcher = false;
                                 break;
                             }
@@ -41,31 +41,32 @@ namespace ClassLogic
                     }
                 }
                 while (IsSwitcher == false);
-                if (AllNumbers[i] == WinDigit)
+                if (AllNumbers[i] == winDigit)
                 {
                     IsRight = true;
                 }
                 else
                 {
-                    if (Math.Abs(WinDigit - NearWinDigit) > Math.Abs(WinDigit - AllNumbers[i]))
+                    if (Math.Abs(winDigit - nearWinDigit) > Math.Abs(winDigit - AllNumbers[i]))
                     {
-                        NearWinDigit = AllNumbers[i];
+                        nearWinDigit = AllNumbers[i];
                     }
                 }
             }
             if (IsRight == true)
             {
-                Console.WriteLine($"{PlayerType} win it with {WinDigit} digit!");
+                Console.WriteLine($"{PlayerType} win it with {winDigit} digit!");
             }
             else
             {
-                Console.WriteLine($"{PlayerType} win it with  digit that was the nearest - {NearWinDigit} digit!");
+                Console.WriteLine($"{PlayerType} win it with  digit that was the nearest - {nearWinDigit} digit!");
             }
         }
-        public Cheater(int AllGamers)
+
+        public Cheater(int allgamers)
         {
             PlayerType = "Cheater";
-            AllNumbers = new int[(100 /AllGamers)];
+            AllNumbers = new int[(100 / allgamers)];
         }
     }
 }
