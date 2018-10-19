@@ -8,12 +8,7 @@ namespace ClassLogic
 {
     public class Cheater : BasikGamer
     {
-        public Cheater()
-        {
-            PlayerType = "Cheater";
-            AllNumbers = new int[20];
-        }
-        public override void Play(int WinDigit, ref int[] AllAnswers, int OneByOne)
+        public override void Play(int WinDigit, ref int[] AllAnswers, int OneByOne, int AllGamers)
         {
             bool IsRight = false;
             bool IsSwitcher = false;
@@ -22,19 +17,19 @@ namespace ClassLogic
             {
                 Random rand = new Random((int)DateTime.Now.Ticks+90 + i);
                 AllNumbers[i] = rand.Next(40, 140);
-                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
+                AllAnswers[((100 / AllGamers) * OneByOne)  + i] = AllNumbers[i];
                 IsSwitcher = false;
                 do
                 {
                     for (int j = 0; j < AllAnswers.Length; j++)
                     {
-                        if (j != (i+ (12 * OneByOne) ))
+                        if (j != (i+ ((100 / AllGamers) * OneByOne) ))
                         {
                             Random rnd = new Random((int)DateTime.Now.Ticks+156 + i + j);
                             if (AllNumbers[i] == AllAnswers[j])
                             {
                                 AllNumbers[i] = rnd.Next(40, 140);
-                                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
+                                AllAnswers[((100 / AllGamers) * OneByOne)  + i] = AllNumbers[i];
                                 IsSwitcher = false;
                                 break;
                             }
@@ -66,6 +61,11 @@ namespace ClassLogic
             {
                 Console.WriteLine($"{PlayerType} win it with  digit that was the nearest - {NearWinDigit} digit!");
             }
+        }
+        public Cheater(int AllGamers)
+        {
+            PlayerType = "Cheater";
+            AllNumbers = new int[(100 /AllGamers)];
         }
     }
 }

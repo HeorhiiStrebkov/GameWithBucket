@@ -9,31 +9,26 @@ namespace ClassLogic
     public class UberCheater : BasikGamer
 
     {
-        public UberCheater()
-        {
-            PlayerType = "UberCheater";
-            AllNumbers = new int[20];
-        }
-        public override void Play(int WinDigit, ref int[] AllAnswers, int OneByOne)
+        public override void Play(int WinDigit, ref int[] AllAnswers, int OneByOne, int AllGamers)
         {
             bool IsRight = false;
             bool IsSwitcher = false;
             int NearWinDigit = 10000;
             for (int i = 0; i < AllNumbers.Length; i++)
             {
-                AllNumbers[i] = (12 * OneByOne)  + i;
-                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
+                AllNumbers[i] = ((100 / AllGamers) * OneByOne)  + i;
+                AllAnswers[((100 / AllGamers) * OneByOne)  + i] = AllNumbers[i];
                 IsSwitcher = false;
                 do
                 {
                     for (int j = 0; j < AllAnswers.Length; j++)
                     {
-                        if (j != (i + (12 * OneByOne) ))
+                        if (j != (i + ((100 / AllGamers) * OneByOne) ))
                         {
                             if (AllNumbers[i] == AllAnswers[j])
                             {
                                 AllNumbers[i]++;
-                                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
+                                AllAnswers[((100 / AllGamers) * OneByOne)  + i] = AllNumbers[i];
                                 IsSwitcher = false;
                                 break;
                             }
@@ -66,6 +61,10 @@ namespace ClassLogic
                 Console.WriteLine($"{PlayerType} win it with  digit that was the nearest - {NearWinDigit} digit!");
             }
         }
-
+        public UberCheater(int AllGamers)
+        {
+            PlayerType = "UberCheater";
+            AllNumbers = new int[(100 / AllGamers)];
+        }
     }
 }

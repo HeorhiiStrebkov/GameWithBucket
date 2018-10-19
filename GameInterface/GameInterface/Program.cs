@@ -14,6 +14,8 @@ namespace GameInterface
             int switcher = 0;
             bool IsSwitcher = false;
             int[] AllAnswers = new int[100];
+            int HowMuchGamers = 0;
+            int ToChooseTypes = 0;
             BasikGamer[] Gamers = new BasikGamer[8];
             Random rand = new Random((int)DateTime.Now.Ticks);
             int WinDigit = rand.Next(40, 140);
@@ -43,7 +45,7 @@ namespace GameInterface
                             {
                                 if (Gamers[i] != null)
                                 {
-                                    Gamers[i].Play(WinDigit, ref AllAnswers, i);
+                                    Gamers[i].Play(WinDigit, ref AllAnswers, i, HowMuchGamers);
                                 }
                             }
                         }
@@ -57,6 +59,16 @@ namespace GameInterface
                         }
                         break;
                     case 3:
+                        Console.WriteLine("Enter number of members between 2 and 8");
+                        do
+                        {
+                            HowMuchGamers = Convert.ToInt32(Console.ReadLine());
+                            if (HowMuchGamers <= 1 && HowMuchGamers >= 9)
+                            {
+                                Console.WriteLine("One more! U need to enter number of members between 2 and 8");
+                            }
+                        }
+                        while (HowMuchGamers > 1 && HowMuchGamers < 9);
                         do
                         {
                             Console.WriteLine();
@@ -79,9 +91,10 @@ namespace GameInterface
                                         {
                                             if (Gamers[i] == null)
                                             {
-                                                var BasikPlayer = new BasikGamer();
+                                                var BasikPlayer = new BasikGamer(HowMuchGamers);
                                                 Gamers[i] = BasikPlayer;
                                                 Console.WriteLine("BasikGamer was Created");
+                                                ToChooseTypes++;
                                                 break;
                                             }
                                         }
@@ -98,9 +111,10 @@ namespace GameInterface
                                         {
                                             if (Gamers[i] == null)
                                             {
-                                                var CheaterPlayer = new Cheater();
+                                                var CheaterPlayer = new Cheater(HowMuchGamers);
                                                 Gamers[i] = CheaterPlayer;
                                                 Console.WriteLine("Cheater was Created");
+                                                ToChooseTypes++;
                                                 break;
                                             }
                                         }
@@ -117,9 +131,10 @@ namespace GameInterface
                                         {
                                             if (Gamers[i] == null)
                                             {
-                                                var NodePlayer = new NodeGamer();
+                                                var NodePlayer = new NodeGamer(HowMuchGamers);
                                                 Gamers[i] = NodePlayer;
                                                 Console.WriteLine("NodePlayer was Created");
+                                                ToChooseTypes++;
                                                 break;
                                             }
                                         }
@@ -136,9 +151,10 @@ namespace GameInterface
                                         {
                                             if (Gamers[i] == null)
                                             {
-                                                var UberPlayer = new UberGamer();
+                                                var UberPlayer = new UberGamer(HowMuchGamers);
                                                 Gamers[i] = UberPlayer;
                                                 Console.WriteLine("UberGamer was Created");
+                                                ToChooseTypes++;
                                                 break;
                                             }
                                         }
@@ -155,9 +171,10 @@ namespace GameInterface
                                         {
                                             if (Gamers[i] == null)
                                             {
-                                                var UberCheaterPlayer = new UberCheater();
+                                                var UberCheaterPlayer = new UberCheater(HowMuchGamers );
                                                 Gamers[i] = UberCheaterPlayer;
                                                 Console.WriteLine("UberCheater was Created");
+                                                ToChooseTypes++;
                                                 break;
                                             }
                                         }
@@ -168,11 +185,11 @@ namespace GameInterface
                                     }
                                     break;
                                 default:
-                                    IsSwitcher = true;
+                                    Console.WriteLine("Missed! Try Again!");
                                     break;
                             }
                         }
-                        while (IsSwitcher == false);
+                        while (ToChooseTypes != HowMuchGamers);
                         IsSwitcher = false;
                         break;
                     case 4:
@@ -186,6 +203,7 @@ namespace GameInterface
                 }
             }
             while (IsSwitcher == false);
+            Console.WriteLine("All players was choosen!");
         }
     }
 }

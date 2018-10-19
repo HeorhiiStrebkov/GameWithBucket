@@ -8,19 +8,14 @@ namespace ClassLogic
 {
     public class UberGamer : BasikGamer
     {
-        public UberGamer()
-        {
-            PlayerType = "UberGamer";
-            AllNumbers = new int[20];
-        }
-        public override void Play(int WinDigit, ref int []AllAnswers, int OneByOne)
+        public override void Play(int WinDigit, ref int []AllAnswers, int OneByOne, int AllGamers)
         {
             bool IsRight = false;
             int NearWinDigit = 10000;
             for (int i = 0; i < AllNumbers.Length; i++)
             {
                 AllNumbers[i] = i+40;
-                AllAnswers[(12 * OneByOne)  + i] = AllNumbers[i];
+                AllAnswers[((100 / AllGamers) * OneByOne)  + i] = AllNumbers[i];
                 if (AllNumbers[i] == WinDigit)
                 {
                     IsRight = true;
@@ -42,6 +37,11 @@ namespace ClassLogic
                
                 Console.WriteLine ($"{PlayerType} win it with  digit that was the nearest - {NearWinDigit} digit!");
             }
+        }
+        public UberGamer(int AllGamers)
+        {
+            PlayerType = "UberGamer";
+            AllNumbers = new int[(100 / AllGamers)];
         }
     }
 }
