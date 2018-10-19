@@ -1,0 +1,5 @@
+D:\Selfgame\GameInterface\ClassLogic\bin\Debug\ClassLogic.dll
+D:\Selfgame\GameInterface\ClassLogic\bin\Debug\ClassLogic.pdb
+D:\Selfgame\GameInterface\ClassLogic\obj\Debug\ClassLogic.csprojResolveAssemblyReference.cache
+D:\Selfgame\GameInterface\ClassLogic\obj\Debug\ClassLogic.dll
+D:\Selfgame\GameInterface\ClassLogic\obj\Debug\ClassLogic.pdb

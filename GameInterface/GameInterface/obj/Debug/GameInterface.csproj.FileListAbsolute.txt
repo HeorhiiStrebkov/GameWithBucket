@@ -1,0 +1,8 @@
+D:\Selfgame\GameInterface\GameInterface\bin\Debug\GameInterface.exe.config
+D:\Selfgame\GameInterface\GameInterface\bin\Debug\GameInterface.exe
+D:\Selfgame\GameInterface\GameInterface\bin\Debug\GameInterface.pdb
+D:\Selfgame\GameInterface\GameInterface\bin\Debug\ClassLogic.dll
+D:\Selfgame\GameInterface\GameInterface\bin\Debug\ClassLogic.pdb
+D:\Selfgame\GameInterface\GameInterface\obj\Debug\GameInterface.csprojResolveAssemblyReference.cache
+D:\Selfgame\GameInterface\GameInterface\obj\Debug\GameInterface.exe
+D:\Selfgame\GameInterface\GameInterface\obj\Debug\GameInterface.pdb
