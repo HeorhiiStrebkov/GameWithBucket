@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameInterface
 {
-    class Program
+    class Program   
     {
         static void Main(string[] args)
         {
